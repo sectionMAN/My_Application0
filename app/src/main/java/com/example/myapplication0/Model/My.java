@@ -1,4 +1,4 @@
-package Model;
+package com.example.myapplication0.Model;
 
 public class My {
     private int id;

@@ -7,8 +7,8 @@ import android.util.Log;
 
 import java.io.IOException;
 
-import Model.My;
-import data.DatabaseHandler;
+import com.example.myapplication0.Model.My;
+import com.example.myapplication0.data.DatabaseHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,9 +22,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       //* data.openDataBase();
-        My my = data.getSubject(1);
-        Log.i("my", "id=" + my.getId() + ", photo =" + my.getPhotos() + ", url =" + my.getUrl());
+       //* com.example.myapplication0.data.openDataBase();
     }
 
 }

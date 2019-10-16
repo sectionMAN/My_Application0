@@ -1,4 +1,4 @@
-package data;
+package com.example.myapplication0.data;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,16 +8,14 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
 
-import Model.My;
+import com.example.myapplication0.Model.My;
+import com.example.myapplication0.Utils;
 
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -28,9 +26,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public DatabaseHandler( Context context){
         super(context, Utils.DB_NAME,null,Utils.DB_VERSION);
-        //DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
+        //DB_PATH = "/com.example.myapplication0.data/com.example.myapplication0.data/" + context.getPackageName() + "/databases/";
         DB_PATH = context.getDatabasePath( Utils.DB_NAME).getPath();
         this.myContext=context;
+
+
     }
 
     @Override
@@ -40,6 +40,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.i("DB", "base's update");
         File dbFile = new File(DB_PATH );//+ DB_NAME);
         if (dbFile.exists())
             dbFile.delete();
@@ -129,24 +130,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super.close();
     }
 
-    //Крут методы для таблици Subjects
-    public My getSubject(int id){
-      Log.i("BD", "start select from bd");
-       My subject=new My();
-        SQLiteDatabase db=this.getReadableDatabase(); //Получмлм объект БД для чтения
 
-
-    Cursor cursor=db.query( Utils.TABLE_NAME,new String[]{ Utils.KEY_ID, Utils.KEY_PHOTOS, Utils.KEY_URL},
-            Utils.KEY_ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
-    Log.i("BD", "info is got");
-    if(cursor!=null){
-         cursor.moveToFirst();
-         subject.setId(cursor.getInt(0));
-         subject.setPhotos(cursor.getString(1));
-         subject.setUrl(cursor.getString(2));
-     }
-        return subject;
-    }
 
 
 
