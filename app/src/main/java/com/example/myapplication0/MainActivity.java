@@ -24,12 +24,13 @@ public class MainActivity extends AppCompatActivity {
     SurfaceView sv;
     SurfaceHolder holder;
     HolderCallback holderCallback;
-    Camera camera;
+
+
 
 
     final int CAMERA_ID = 0;
     final boolean FULL_SCREEN = true;
-
+    static Camera camera = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
         result = result % 360;
         camera.setDisplayOrientation(result);
     }
-       //* com.example.myapplication0.data.openDataBase();
-    }
+}
 
 
